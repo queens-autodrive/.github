@@ -27,13 +27,13 @@ jobs:
       - name: Get all repos in the organization
         id: get_repos
         run: |
-          ORGANIZATION="queens-autodrive"  # Replace with your organization name
-          REPOS=$(curl -s \
+          ORGANIZATION="queens-autodrive"
+          RESPONSE=$(curl -s \
             -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/orgs/$ORGANIZATION/repos?per_page=100" \
-            | jq -r '.[].name')
-          echo "REPOS=$REPOS" >> $GITHUB_ENV  # Set repos as an environment variable for later use
-
+            "https://api.github.com/orgs/$ORGANIZATION/repos?per_page=100")
+          echo "API Response: $RESPONSE"
+          REPOS=$(echo "$RESPONSE" | jq -r '.[].name')
+          echo "REPOS=$REPOS" >> $GITHUB_ENV
       - name: Update Labels for All Repos
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
