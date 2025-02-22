@@ -1,0 +1,63 @@
+name: Update Labels Across All Repos in Org
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/labels.yml   # Only trigger if the label configuration changes
+
+jobs:
+  update-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Set up GitHub Token for API Authentication
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests yq
+
+      - name: Get all repos in the organization
+        id: get_repos
+        run: |
+          ORGANIZATION="queens-autodrive"  # Replace with your organization name
+          REPOS=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/orgs/$ORGANIZATION/repos?per_page=100" \
+            | jq -r '.[].name')
+          echo "REPOS=$REPOS" >> $GITHUB_ENV  # Set repos as an environment variable for later use
+
+      - name: Update Labels for All Repos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+        run: |
+          LABELS=$(cat .github/labels.yml)  # Path to your labels configuration file
+
+          # Loop through the repositories listed in the environment variable
+          for REPO in $REPOS; do
+            echo "Updating labels in $REPO"
+
+            # Loop through the labels and update them
+            for LABEL in $(echo "$LABELS" | yq e '.labels[]' -); do
+              # Extract label name and color from the YAML file
+              LABEL_NAME=$(echo "$LABEL" | yq e '.name' -)
+              LABEL_COLOR=$(echo "$LABEL" | yq e '.color' -)
+              LABEL_DESCRIPTION=$(echo "$LABEL" | yq e '.description' -)
+
+              echo "Label: $LABEL_NAME, Color: $LABEL_COLOR, Description: $LABEL_DESCRIPTION" # Print label info
+
+              # Make the API request to update the label
+              curl -X PUT \
+                -H "Authorization: token $GITHUB_TOKEN" \
+                -H "Accept: application/vnd.github.v3+json" \
+                -d '{"name": "'"$LABEL_NAME"'", "color": "'"$LABEL_COLOR"'"}' \
+                "https://api.github.com/repos/$ORGANIZATION/$REPO/labels/$LABEL_NAME"
+            done
+          done
