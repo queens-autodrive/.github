@@ -1,56 +1,42 @@
-labels:
-  - name: "bug"
-    color: "#d73a4a"
-    description: "Something isn't working"
-    
-  - name: "documentation"
-    color: "#0075ca"
-    description: "Improvements or additions to documentation"
-    
-  - name: "duplicate"
-    color: "#cfd3d7"
-    description: "This issue or pull request already exists"
-    
-  - name: "enhancement"
-    color: "#a2eeef"
-    description: "New feature or request"
-    
-  - name: "help wanted"
-    color: "#008672"
-    description: "Extra attention is needed"
-    
-  - name: "question"
-    color: "#d876e3"
-    description: "Further information is requested"
-    
-  - name: "wontfix"
-    color: "#ffffff"
-    description: "This will not be worked on"
-    
-  - name: "Mcity"
-    color: "#CED453"
-    description: "This particularly affects Mcity testing"
-    
-  - name: "Kcity"
-    color: "#3E508D"
-    description: "This particularly affects Kcity testing"
-    
-  - name: "Simulation"
-    color: "#DB4C81"
-    description: "This particularly affects simulation testing"
-    
-  - name: "Localization"
-    color: "#6F3CFD"
-    description: "This particularly affects the localization challenge"
-    
-  - name: "99BOR"
-    color: "#D0C35B"
-    description: "This particularly affects the 99% buy off ride challenge (99BOR)"
-    
-  - name: "DYOC"
-    color: "#1AB65E"
-    description: "This particularly affects the design your own challenge (DYOC)"
-    
-  - name: "Safety Concern"
-    color: "#FBCA04"
-    description: "This poses a safety risk"
+bug:
+  color: "d73a4a"
+  description: "Something is not working"
+documentation:
+  color: "0075ca"
+  description: "Improvements or additions to documentation"
+duplicate:
+  color: "cfd3d7"
+  description: "This issue or pull request already exists"
+enhancement:
+  color: "a2eeef"
+  description: "New feature or request"
+help wanted:
+  color: "008672"
+  description: "Extra attention is needed"
+question:
+  color: "d876e3"
+  description: "Further information is requested"
+wontfix:
+  color: "ffffff"
+  description: "This will not be worked on"
+Mcity:
+  color: "CED453"
+  description: "This particularly affects Mcity testing"
+Kcity:
+  color: "3E508D"
+  description: "This particularly affects Kcity testing"
+Simulation:
+  color: "DB4C81"
+  description: "This particularly affects simulation testing"
+Localization:
+  color: "6F3CFD"
+  description: "This particularly affects the localization challenge"
+99BOR:
+  color: "D0C35B"
+  description: "This particularly affects the 99% buy off ride challenge (99BOR)"
+DYOC:
+  color: "1AB65E"
+  description: "This particularly affects the design your own challenge (DYOC)"
+Safety Concern:
+  color: "FBCA04"
+  description: "This poses a safety risk"
