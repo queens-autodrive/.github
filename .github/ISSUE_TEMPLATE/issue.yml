@@ -1,6 +1,5 @@
 name: Issue Report
 description: Report an issue, failure, missing feature, etc...
-title: "<title>"
 labels: []
 assignees: []
 body:
