@@ -1,0 +1,59 @@
+name: Issue Report
+description: Report an issue, failure, missing feature, etc...
+title: ""
+labels: []
+assignees: []
+body:
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected Behaviour"
+      description: "Describe what should have happened."
+      placeholder: "The system should..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed-behavior
+    attributes:
+      label: "Observed Behavior"
+      description: "Describe what actually happened."
+      placeholder: "Instead, the system did..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: failure-modes
+    attributes:
+      label: "Potential Failure Modes"
+      description: "What are possible failure modes?"
+      placeholder: "This could be due to..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: potential-fixes
+    attributes:
+      label: "Potential Fixes"
+      description: "Suggest any possible fixes or solutions."
+      placeholder: "One possible fix could be..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: "Additional Information"
+      description: "Attach any relevant test reports, ROS bags, logs, or screenshots."
+      placeholder: "Here is a screenshot of the HMI showing..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: assign-people
+    attributes:
+      label: "Additional Assignees"
+      description: "Mention relevant people/teams as GitHub only allows assigning one person."
+      placeholder: "@user1 @user2 @team"
+    validations:
+      required: false
