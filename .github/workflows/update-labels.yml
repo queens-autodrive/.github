@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests yq
+          pip install requests yq && sudo snap install yq
 
-      - name: Get all repos in the organization
+      - name: Get all repos in the organization and update their labels
         env:
           LABELS_PAT: ${{ secrets.LABELS_PAT }}
         id: get_repos
@@ -33,7 +33,6 @@ jobs:
           RESPONSE=$(curl -s \
             -H "Authorization: token $LABELS_PAT" \
             "https://api.github.com/orgs/$ORGANIZATION/repos?per_page=100")
-          echo $REPOS
           REPOS=$(echo "$RESPONSE" | jq -r '.[].name')
           echo "REPOS=$REPOS" >> $GITHUB_ENV
           LABELS=$(cat .github/labels.yml)  
