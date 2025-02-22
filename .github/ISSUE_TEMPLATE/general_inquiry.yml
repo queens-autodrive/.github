@@ -1,0 +1,23 @@
+name: General Inquiry
+description: Request further documentation, ask questions, clarify requirements, etc...
+title: "Inquiry: "
+labels: []
+assignees: []
+body:
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: "Additional Information"
+      description: "Attach any relevant information."
+      placeholder: "Could you update your documentation to reflect our recent changes to..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: assign-people
+    attributes:
+      label: "Additional Assignees"
+      description: "Mention relevant people/teams as GitHub only allows assigning one person."
+      placeholder: "@user1 @user2 @team"
+    validations:
+      required: false
